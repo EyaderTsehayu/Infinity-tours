@@ -6,6 +6,7 @@ import NewPlace from "./places/pages/NewPlace.jsx";
 import UserPlaces from "./places/pages/UserPlaces.jsx";
 import "./App.css";
 import MainNavigation from "./shared/components/Navigation/MainNavigation.jsx";
+import UpdatePlace from "./places/pages/UpdatePlace.jsx";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Users />} exact />
-          <Route path="/places/new" element={<NewPlace />} exact />
           <Route path="/:userId/places" element={<UserPlaces />} exact />
+          <Route path="/places/new" element={<NewPlace />} exact />
+          <Route path="/places/:placeId" element={<UpdatePlace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
