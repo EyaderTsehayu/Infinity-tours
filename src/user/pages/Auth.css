@@ -8,8 +8,12 @@
   max-width: 25rem;
   margin: 7rem auto;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .authentication form {
   margin: 1rem;
+}
+.authentication Button {
+  margin-bottom: 1rem;
 }
