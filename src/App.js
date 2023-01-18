@@ -17,6 +17,28 @@ function App() {
   const logout = useCallback(() => {
     setIsLoggedIn(false);
   }, []);
+  let routes;
+
+  if (isLoggedIn) {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Users />} exact />
+        <Route path="/:userId/places" element={<UserPlaces />} exact />
+        <Route path="/places/new" element={<NewPlace />} exact />
+        <Route path="/places/:placeId" element={<UpdatePlace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    );
+  } else {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Users />} exact />
+        <Route path="/:userId/places" element={<UserPlaces />} exact />
+        <Route path="/auth" element={<Auth />} exact />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    );
+  }
 
   return (
     <AuthContext.Provider
@@ -24,16 +46,7 @@ function App() {
     >
       <BrowserRouter>
         <MainNavigation />
-        <main>
-          <Routes>
-            <Route path="/" element={<Users />} exact />
-            <Route path="/:userId/places" element={<UserPlaces />} exact />
-            <Route path="/places/new" element={<NewPlace />} exact />
-            <Route path="/places/:placeId" element={<UpdatePlace />} />
-            <Route path="/auth" element={<Auth />} exact />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
+        <main>{routes}</main>
       </BrowserRouter>
     </AuthContext.Provider>
   );
